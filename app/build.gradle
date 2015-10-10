@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 19
+    compileSdkVersion 23
     buildToolsVersion "23.0.0"
 
     defaultConfig {
         applicationId "com.wikitude.sdksamples"
-        minSdkVersion 9
-        targetSdkVersion 19
+        minSdkVersion 16
+        targetSdkVersion 23
     }
 
     buildTypes {
@@ -19,6 +19,12 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:19.1.0'
+    compile 'com.android.support:support-v4:23.0.0'
+    compile 'com.android.support:appcompat-v7:23.0.0'
+    compile 'com.jpardogo.listbuddies:library:1.1.0'
+    compile 'com.squareup.picasso:picasso:2.3.3'
+
+   // compile 'com.yalantis:sidemenu:1.0'
     compile files('libs/wikitudesdk.jar')
+    compile 'com.etsy.android.grid:library:1.0.5'
 }

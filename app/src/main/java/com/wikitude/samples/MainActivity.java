@@ -1,12 +1,12 @@
 package com.wikitude.samples;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 
+import com.wikitude.samples.utils.urllauncher.Catalog;
 import com.wikitude.sdksamples.R;
 
 public class MainActivity extends Activity {
@@ -22,7 +22,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button snaptoscreenButton = (Button) findViewById(R.id.snaptoscreenButton);
+        ImageButton snaptoscreenButton = (ImageButton) findViewById(R.id.snaptoscreenButton);
+        ImageButton catalog = (ImageButton)findViewById(R.id.catalog_button);
         snaptoscreenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,6 +37,16 @@ public class MainActivity extends Activity {
             }
         });
 
+
+         catalog.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+
+                 Intent catalogIntent = new Intent(MainActivity.this,Catalog.class);
+                 startActivity(catalogIntent);
+
+             }
+         });
     }
 
 }

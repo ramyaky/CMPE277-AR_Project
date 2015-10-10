@@ -16,4 +16,8 @@
     <string name="poi_id">ID</string>
     <string name="title_activity_sample1_poi_detail">Sample 5.1 POI Detail</string>
     <string name="footer">Sample App</string>
+    <string name="title_activity_catalog">Catalog</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 </resources>
