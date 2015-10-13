@@ -6,22 +6,23 @@ package com.wikitude.samples.utils.urllauncher;
 public class ImageUrls {
 
     public final static String[] imageUrls_left = new String[]{
-            "https://lh6.googleusercontent.com/-55osAWw3x0Q/URquUtcFr5I/AAAAAAAAAbs/rWlj1RUKrYI/s1024/A%252520Photographer.jpg",
-            "https://lh4.googleusercontent.com/--dq8niRp7W4/URquVgmXvgI/AAAAAAAAAbs/-gnuLQfNnBA/s1024/A%252520Song%252520of%252520Ice%252520and%252520Fire.jpg",
-            "https://lh5.googleusercontent.com/-7qZeDtRKFKc/URquWZT1gOI/AAAAAAAAAbs/hqWgteyNXsg/s1024/Another%252520Rockaway%252520Sunset.jpg",
-            "https://lh3.googleusercontent.com/--L0Km39l5J8/URquXHGcdNI/AAAAAAAAAbs/3ZrSJNrSomQ/s1024/Antelope%252520Butte.jpg",
-            "https://lh6.googleusercontent.com/-8HO-4vIFnlw/URquZnsFgtI/AAAAAAAAAbs/WT8jViTF7vw/s1024/Antelope%252520Hallway.jpg",
-            "https://lh4.googleusercontent.com/-WIuWgVcU3Qw/URqubRVcj4I/AAAAAAAAAbs/YvbwgGjwdIQ/s1024/Antelope%252520Walls.jpg",
-            "https://lh6.googleusercontent.com/-UBmLbPELvoQ/URqucCdv0kI/AAAAAAAAAbs/IdNhr2VQoQs/s1024/Apre%2525CC%252580s%252520la%252520Pluie.jpg"
+            "http://carsmach.com/wp-content/uploads/luxury-sofa-bed-design-home-furniture.jpg",
+            "http://livinghomedesigns.com/wp-content/uploads/2014/09/patio-furniture-craigslist-miami.jpg",
+            "http://image.made-in-china.com/44f3j00eaTtOQUKIEcv/Blue-Amber-Series-classic-home-furniture-sofa-BA-1106-A-.jpg",
+            "http://www.madisonseating.com/images/detailed/333/3569-S.jpg",
+            "http://www.designwagen.com/pictures/2013/01/Contemporary-Wallbeds-design-for-Home-Interior-Decorative-by-Furniture-World-Euro-Duluxe-Bed.jpg",
+            "http://www.jazdecor.com/wp-content/uploads/2012/11/Calm-Lighting-with-Wood-Beds-Furniture-in-Classic-Styles.jpg",
+            "http://furnizzy.com/wp-content/uploads/2015/05/dining-room-jessica-mcclintock-home-the-boutique-collection-piece-round-glass-dining-table-set-with-wooden-hand-carved-base-chairs-and-custom-pendant-light-ideas-with-round-pedestal-table-with-leaf-an.jpg"
 
 
     };
 
     public final static String[] imageUrls_right = new String[]{
-            "https://lh3.googleusercontent.com/-s-AFpvgSeew/URquc6dF-JI/AAAAAAAAAbs/Mt3xNGRUd68/s1024/Backlit%252520Cloud.jpg",
-            "https://lh5.googleusercontent.com/-bvmif9a9YOQ/URquea3heHI/AAAAAAAAAbs/rcr6wyeQtAo/s1024/Bee%252520and%252520Flower.jpg",
-            "https://lh5.googleusercontent.com/-n7mdm7I7FGs/URqueT_BT-I/AAAAAAAAAbs/9MYmXlmpSAo/s1024/Bonzai%252520Rock%252520Sunset.jpg",
-            "https://lh6.googleusercontent.com/-4CN4X4t0M1k/URqufPozWzI/AAAAAAAAAbs/8wK41lg1KPs/s1024/Caterpillar.jpg",
+            "http://www.househomedecor.com/wp-content/uploads/2014/10/modern-dining-room-chairs-cape-town.jpg",
+            "http://homemydesign.com/wp-content/uploads/2013/03/wood-tv-stands-furniture.jpg",
+            "http://www.xpanss.com/wp-content/uploads/2015/02/home-gallery-furniture-with-yellow-wall-color-scheme-stylish-furniture-tv-stands-790x790.jpg",
+            "http://ontrus.com/wp-content/uploads/2014/08/amusing-corner-cool-office-furniture-ideas-plus-white-swivel-side-chair-and-notebook-with-laminate-flooring-as-well-as-bookshelves.jpg",
+            "http://chantiki.com/wp-content/uploads/2015/06/furniture-awesome-home-interior-design-with-white-wall-shelf-for-books-and-ornaments-combine-with-brown-wall-paint-and-brown-granite-floor-unique-wall-shelf-ideas.jpg"
 
 
     };
