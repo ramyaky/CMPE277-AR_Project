@@ -71,9 +71,9 @@ var World = {
 				Inside the toggleAnimateModel() function, it is checked if the animation is running and decided if it should be started, resumed or paused.
 			*/
 			scale: {
-				x: 1.0,
-				y: 1.0,
-				z: 1.0
+				x: 0.06,
+				y: 0.06,
+				z: 0.06
 			},
 			translate: {
 				x: 0.0,
@@ -93,9 +93,9 @@ var World = {
         				Inside the toggleAnimateModel() function, it is checked if the animation is running and decided if it should be started, resumed or paused.
         			*/
         			scale: {
-        				x: 1.0,
-        				y: 1.0,
-        				z: 1.0
+        				x: 0.06,
+        				y: 0.06,
+        				z: 0.06
         			},
         			translate: {
         				x: 0.0,
@@ -168,7 +168,7 @@ var World = {
 			To add the AR.ImageDrawable to the image target together with the 3D model both drawables are supplied to the AR.Trackable2DObject.
 		*/
 		this.trackable = [];
-		this.trackable[0] = new AR.Trackable2DObject(this.tracker, "qr_conferencechair.jpg", {
+		this.trackable[0] = new AR.Trackable2DObject(this.tracker, "qr_conferencechair", {
 			drawables: {
 				cam: [this.modelCar[0], this.buttonRotate[0], this.buttonSnap[0], this.buttonZoonIn[0]]
 			},
@@ -178,7 +178,7 @@ var World = {
 			onEnterFieldOfVision: this.appear,
 			onExitFieldOfVision: this.disappear
 		});
-		this.trackable[1] = new AR.Trackable2DObject(this.tracker, "qr_buggy.jpg", {
+		this.trackable[1] = new AR.Trackable2DObject(this.tracker, "qr_buggy", {
         	drawables: {
        			cam: [this.modelCar[1], this.buttonRotate[1], this.buttonSnap[1], this.buttonZoonIn[1]]
      		},
@@ -248,7 +248,7 @@ var World = {
 
                     	World.modelCar[World.elemId].scale = {
                     		x: World.tmp + 0.001,
-                        	y: World.tmp + 0.001
+                        	y: World.tmp + 0.001,
                         	z: World.tmp + 0.001
                     	};
                     	World.tmp = World.modelCar[World.elemId].scale.x;
