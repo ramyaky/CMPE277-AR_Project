@@ -10,6 +10,7 @@ var World = {
 		y: 0
 	},
 	tmp: 0,
+	count: 6,
 	dist1: 0,
 	dist2: 0,
 	lastScale: 0,
@@ -43,7 +44,7 @@ var World = {
 			Important: If you replace the tracker file with your own, make sure to change the target name accordingly.
 			Use a specific target name to respond only to a certain target or use a wildcard to respond to any or a certain group of targets.
 		*/
-		this.tracker = new AR.ClientTracker("assets/tracker-4.wtc", {
+		this.tracker = new AR.ClientTracker("assets/tracker-7.wtc", {
 			onLoaded: this.loadingStep
 		});
 
@@ -59,8 +60,8 @@ var World = {
 		this.modelCar = [];
 		this.appearingAnimation =[];
 		this.rotationAnimation = [];
-		var models = ["assets/finebuggy.wt3", "assets/confChair.wt3", "assets/confChair.wt3"];
-		for(var i=0; i<3; i++) {
+		var models = ["assets/finebuggy.wt3", "assets/confChair.wt3", "assets/confChair.wt3", "assets/teapotbig.wt3", "assets/confChair.wt3", "assets/sodabottels.wt3"];
+		for(var i=0; i<World.count; i++) {
 			this.modelCar[i] = new AR.Model(models[i], {
 				onLoaded: this.loadingStep,
 				/*
@@ -123,8 +124,8 @@ var World = {
 		*/
 
 		this.trackable = [];
-		var qrCodes = ["qr_buggy", "qr_conferencechair","conferencechairdemo"];
-		for(var i=0; i<3; i++) {
+		var qrCodes = ["qr_buggy", "qr_conferencechair","conferencechairdemo", "table1", "homeliving", "table2"];
+		for(var i=0; i<World.count; i++) {
 			this.trackable[i] = new AR.Trackable2DObject(this.tracker, qrCodes[i], {
             	drawables: {
             		cam: [this.modelCar[i], this.buttonRotate, this.buttonSnap]
@@ -294,17 +295,11 @@ var World = {
 	appear: function appearFn() {
 		console.log("appearFn() ");
 		World.trackableVisible = true;
-		if (World.trackable[0].isVisible()){
-			elem = 0;
-		}
-
-		else if (World.trackable[1].isVisible()){
-				elem = 1;
+		for(var i=0; i<World.count; i++) {
+			if(World.trackable[i].isVisible()){
+				elem = i;
 			}
-		else if (World.trackable[2].isVisible()){
-        				elem = 2;
-        			}
-
+		}
 
 		World.elemId = elem;
 		if ( World.loaded && !World.snapped ) {
@@ -327,15 +322,12 @@ var World = {
 
 	toggleAnimateModel: function toggleAnimateModelFn() {
 		console.log("toggleAnimateModelFn() ");
-		if (World.trackable[0].isVisible()){
-			elem = 0;
-		}
-		else if (World.trackable[1].isVisible()){
-				elem = 1;
-			}
-		else if (World.trackable[2].isVisible()){
-        				elem = 2;
-        			}
+		for(var i=0; i<World.count; i++) {
+        	if(World.trackable[i].isVisible()){
+        		elem = i;
+        	}
+        }
+
 
 		if (!World.rotationAnimation[elem].isRunning()) {
 			if (!World.rotating) {
@@ -368,15 +360,11 @@ var World = {
 	toggleSnapping: function toggleSnappingFn() {
 		console.log("toggleSnappingFn() ");
 		World.snapped = !World.snapped;
-		if (World.trackable[0].isVisible()){
-			elem = 0;
-		}
-		else if (World.trackable[1].isVisible()){
-			elem = 1;
-		}
-		else if (World.trackable[2].isVisible()){
-           	elem = 2;
-        }
+		for(var i=0; i<World.count; i++) {
+        	if(World.trackable[i].isVisible()){
+        		elem = i;
+        	}
+       	}
 
 
 		World.trackable[elem].snapToScreen.enabled = World.snapped;
@@ -404,15 +392,12 @@ var World = {
 		World.buttonSnap.offsetX = -layout.offsetX;
 		World.buttonSnap.offsetY = -layout.offsetY;
 
-		if (World.trackable[0].isVisible()){
-			elem = 0;
-		}
-		else if (World.trackable[1].isVisible()){
-			elem = 1;
-		}
-		else if (World.trackable[2].isVisible()){
-        	elem = 2;
+		for(var i=0; i<World.count; i++) {
+        	if(World.trackable[i].isVisible()){
+        		elem = i;
+     		}
         }
+
 
 		World.modelCar[elem].scale = {
 			x: layout.carScale,
