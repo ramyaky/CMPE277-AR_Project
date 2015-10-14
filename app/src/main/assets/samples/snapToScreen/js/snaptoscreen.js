@@ -40,7 +40,6 @@ var World = {
 	createOverlays: function createOverlaysFn() {
 		/*
 			First an AR.ClientTracker needs to be created in order to start the recognition engine. It is initialized with a URL specific to the target collection. Optional parameters are passed as object in the last argument. In this case a callback function for the onLoaded trigger is set. Once the tracker is fully loaded the function loadingStep() is called.
-
 			Important: If you replace the tracker file with your own, make sure to change the target name accordingly.
 			Use a specific target name to respond only to a certain target or use a wildcard to respond to any or a certain group of targets.
 		*/
@@ -50,75 +49,50 @@ var World = {
 
 		/*
 			3D content within Wikitude can only be loaded from Wikitude 3D Format files (.wt3). This is a compressed binary format for describing 3D content which is optimized for fast loading and handling of 3D content on a mobile device. You still can use 3D models from your favorite 3D modeling tools (Autodesk® Maya® or Blender) but you'll need to convert them into the wt3 file format. The Wikitude 3D Encoder desktop application (Windows and Mac) encodes your 3D source file. You can download it from our website. The Encoder can handle Autodesk® FBX® files (.fbx) and the open standard Collada (.dae) file formats for encoding to .wt3.
-
 			Create an AR.Model and pass the URL to the actual .wt3 file of the model. Additional options allow for scaling, rotating and positioning the model in the scene.
-
 			A function is attached to the onLoaded trigger to receive a notification once the 3D model is fully loaded. Depending on the size of the model and where it is stored (locally or remotely) it might take some time to completely load and it is recommended to inform the user about the loading time.
 		*/
 		this.loadedModel = [];
 		this.loadedModel[0] = false;
 		this.loadedModel[1] = false;
 
-
 		this.modelCar = [];
-		this.modelCar[0] = new AR.Model("assets/finebuggy.wt3", {
-			onLoaded: this.loadingStep,
-			/*
-				The drawables are made clickable by setting their onClick triggers. Click triggers can be set in the options of the drawable when the drawable is created. Thus, when the 3D model onClick: this.toggleAnimateModel is set in the options it is then passed to the AR.Model constructor. Similar the button's onClick: this.toggleAnimateModel trigger is set in the options passed to the AR.ImageDrawable constructor. toggleAnimateModel() is therefore called when the 3D model or the button is clicked.
-
-				Inside the toggleAnimateModel() function, it is checked if the animation is running and decided if it should be started, resumed or paused.
-			*/
-			scale: {
-				x: 0.06,
-				y: 0.06,
-				z: 0.06
-			},
-			translate: {
-				x: 0.0,
-				y: 0.05,
-				z: 0.0
-			},
-			rotate: {
-				roll: -25
-			}
-		});
-		this.modelCar[1] = new AR.Model("assets/confChair.wt3", {
-        	onLoaded: this.loadingStep,
-        	/*
-        		The drawables are made clickable by setting their onClick triggers. Click triggers can be set in the options of the drawable when the drawable is created. Thus, when the 3D model onClick: this.toggleAnimateModel is set in the options it is then passed to the AR.Model constructor. Similar the button's onClick: this.toggleAnimateModel trigger is set in the options passed to the AR.ImageDrawable constructor. toggleAnimateModel() is therefore called when the 3D model or the button is clicked.
-
-        		Inside the toggleAnimateModel() function, it is checked if the animation is running and decided if it should be started, resumed or paused.
-        	*/
-        	scale: {
-        		x: 0.06,
-        		y: 0.06,
-        		z: 0.06
-        	},
-        	translate: {
-        		x: 0.0,
-        		y: 0.05,
-        		z: 0.0
-        	},
-        	rotate: {
-        		roll: -25
-        	}
-        });
-
-
-		/*
-			As a next step, an appearing animation is created. For more information have a closer look at the function implementation.
-		*/
 		this.appearingAnimation =[];
-		this.appearingAnimation[0] = this.createAppearingAnimation(this.modelCar[0], 0.045);
-		this.appearingAnimation[1] = this.createAppearingAnimation(this.modelCar[1], 0.045);
-		this.appearingAnimation[2] = this.createAppearingAnimation(this.modelCar[1], 0.045);
-		/*
-			The rotation animation for the 3D model is created by defining an AR.PropertyAnimation for the rotate.roll property.
-		*/
 		this.rotationAnimation = [];
-		this.rotationAnimation[0] = new AR.PropertyAnimation(this.modelCar[0], "rotate.roll", -25, 335, 10000);
-		this.rotationAnimation[1] = new AR.PropertyAnimation(this.modelCar[1], "rotate.roll", -25, 335, 10000);
-		this.rotationAnimation[2] = new AR.PropertyAnimation(this.modelCar[1], "rotate.roll", -25, 335, 10000);
+		var models = ["assets/finebuggy.wt3", "assets/confChair.wt3", "assets/confChair.wt3"];
+		for(var i=0; i<3; i++) {
+			this.modelCar[i] = new AR.Model(models[i], {
+				onLoaded: this.loadingStep,
+				/*
+                	The drawables are made clickable by setting their onClick triggers. Click triggers can be set in the options of the drawable when the drawable is created. Thus, when the 3D model onClick: this.toggleAnimateModel is set in the options it is then passed to the AR.Model constructor. Similar the button's onClick: this.toggleAnimateModel trigger is set in the options passed to the AR.ImageDrawable constructor. toggleAnimateModel() is therefore called when the 3D model or the button is clicked.
+
+                	Inside the toggleAnimateModel() function, it is checked if the animation is running and decided if it should be started, resumed or paused.
+                */
+                scale: {
+                	x: 0.06,
+                	y: 0.06,
+                	z: 0.06
+                },
+                translate: {
+                	x: 0.0,
+                	y: 0.05,
+                	z: 0.0
+                },
+                rotate: {
+                	roll: -25
+                }
+			});
+
+			/*
+            	As a next step, an appearing animation is created. For more information have a closer look at the function implementation.
+            */
+			this.appearingAnimation[i] = this.createAppearingAnimation(this.modelCar[i], 0.045);
+			/*
+            	The rotation animation for the 3D model is created by defining an AR.PropertyAnimation for the rotate.roll property.
+            */
+			this.rotationAnimation[i] = new AR.PropertyAnimation(this.modelCar[i], "rotate.roll", -25, 335, 10000);
+		}
+
 		/*
 			Additionally to the 3D model an image that will act as a button is added to the image target. This can be accomplished by loading an AR.ImageResource and creating a drawable from it.
 		*/
@@ -145,41 +119,23 @@ var World = {
 
 		/*
 			To receive a notification once the image target is inside the field of vision the onEnterFieldOfVision trigger of the AR.Trackable2DObject is used. In the example the function appear() is attached. Within the appear function the previously created AR.AnimationGroup is started by calling its start() function which plays the animation once.
-
 			To add the AR.ImageDrawable to the image target together with the 3D model both drawables are supplied to the AR.Trackable2DObject.
 		*/
-		this.trackable = [];
-		this.trackable[0] = new AR.Trackable2DObject(this.tracker, "qr_buggy", {
-			drawables: {
-				cam: [this.modelCar[0], this.buttonRotate, this.buttonSnap, this.buttonZoonIn]
-			},
-			snapToScreen: {
-				snapContainer: document.getElementById('snapContainer')
-			},
-			onEnterFieldOfVision: this.appear,
-			onExitFieldOfVision: this.disappear
-		});
-		this.trackable[1] = new AR.Trackable2DObject(this.tracker, "qr_conferencechair", {
-			drawables: {
-				cam: [this.modelCar[1], this.buttonRotate, this.buttonSnap, this.buttonZoonIn]
-			},
-			snapToScreen: {
-				snapContainer: document.getElementById('snapContainer')
-			},
-			onEnterFieldOfVision: this.appear,
-			onExitFieldOfVision: this.disappear
-		});
-		this.trackable[2] = new AR.Trackable2DObject(this.tracker, "conferencechairdemo", {
-        			drawables: {
-        				cam: [this.modelCar[1], this.buttonRotate, this.buttonSnap, this.buttonZoonIn]
-        			},
-        			snapToScreen: {
-        				snapContainer: document.getElementById('snapContainer')
-        			},
-        			onEnterFieldOfVision: this.appear,
-        			onExitFieldOfVision: this.disappear
-        		});
 
+		this.trackable = [];
+		var qrCodes = ["qr_buggy", "qr_conferencechair","conferencechairdemo"];
+		for(var i=0; i<3; i++) {
+			this.trackable[i] = new AR.Trackable2DObject(this.tracker, qrCodes[i], {
+            	drawables: {
+            		cam: [this.modelCar[i], this.buttonRotate, this.buttonSnap]
+            	},
+            	snapToScreen: {
+            		snapContainer: document.getElementById('snapContainer')
+            	},
+            	onEnterFieldOfVision: this.appear,
+            	onExitFieldOfVision: this.disappear
+            });
+		}
 
 		/*
 			Event handler for touch and gesture events. The handler are used to calculate and set new rotate and scaling values for the 3D model.
@@ -203,7 +159,6 @@ var World = {
 
 			console.log("handleTouchMoveFn() ");
 			if (World.swipeAllowed) {
-
 				/* Define some local variables to keep track of the new touch location and the movement between the last event and the current one */
 				var touch = {
 					x: event.touches[0].clientX,
@@ -214,16 +169,13 @@ var World = {
 					y: 0
 				};
 
-
 				/* Calculate the touch movement between this event and the last one */
 				movement.x = (World.lastTouch.x - touch.x) * -1;
 				movement.y = (World.lastTouch.y - touch.y) * -1;
 
-
 				/* Rotate the car model accordingly to the calculated movement values. Note: we're slowing the movement down so that the touch action feels better */
 				World.modelCar[World.elemId].rotate.heading += (movement.x * 0.3);
 				World.modelCar[World.elemId].rotate.tilt += (movement.y * 0.3);
-
 
 				/* Keep track of the current touch location. We need them in the next move cycle */
 				World.lastTouch.x = touch.x;
@@ -256,7 +208,6 @@ var World = {
 						World.tmp = World.modelCar[World.elemId].scale.x;
 					}
             }
-
 			event.preventDefault();
 		}
 
@@ -265,7 +216,6 @@ var World = {
 			console.log("handleGestureStartFn() ");
 			/* Once a gesture is recognized, disable rotation changes */
 			World.swipeAllowed = false;
-
 			World.lastScale = event.scale;
 		}
 
@@ -277,7 +227,6 @@ var World = {
 
 			/* Negative scale values are not allowd by the 3D model API. So we use the Math.max function to ensure scale values >= 0. */
 			var newScale = Math.max(World.modelCar[World.elemId].scale.x + deltaScale, 0);
-
 
 			World.modelCar[World.elemId].scale = {
 				x: newScale,
@@ -294,93 +243,33 @@ var World = {
 			console.log("handleGestureEndFn() ");
 			/* Once the gesture ends, allow rotation changes again */
 			World.swipeAllowed = true;
-
 			World.lastScale = event.scale;
-			if(event.scale < 1.0) {
-
-			}
 		}
 	},
 
 	loadingStep: function loadingStepFn() {
 		console.log("loadingStepFn() ");
+		// Remove Scan target message after 10 sec.
+        setTimeout(function() {
+        var e = document.getElementById('loadingMessage');
+        	e.parentElement.removeChild(e);
+        },10000);
+        
+		//var htmlImages = ["assets/qr_buggy.png", "assets/qr_conferencechair", "assets/conferencechairdemo.jpg"];
 		if (!World.loaded && World.tracker.isLoaded() ) {
 			//console.log("World.modelCar[0].isLoaded() = " + World.modelCar[0].isLoaded() + " World.modelCar[1].isLoaded() = " + World.modelCar[1].isLoaded());
 			console.log("tracker0 = " + World.trackable[0].isVisible());
-			if (World.trackable[0].isVisible()){
-				World.loaded = true;
-				World.elemId = 0;
-				console.log("car loaded ");
-				console.log("World.trackableVisible = " + World.trackableVisible);
-                console.log("World.appearingAnimation[World.elemId].isRunning() = " + World.appearingAnimation[World.elemId].isRunning());
-				if ( World.trackableVisible && !World.appearingAnimation[World.elemId].isRunning() ) {
-					console.log("car animation start ");
-					World.appearingAnimation[World.elemId].start();
+			for(var i=0;i<3;i++) {
+				if (World.trackable[i].isVisible()){
+					World.loaded = true;
+					World.elemId = i;
+					if ( World.trackableVisible && !World.appearingAnimation[World.elemId].isRunning() ) {
+						World.appearingAnimation[World.elemId].start();
+					}
 				}
-
-				var cssDivLeft = " style='display: table-cell;vertical-align: middle; text-align: right; width: 50%; padding-right: 15px;'";
-				var cssDivRight = " style='display: table-cell;vertical-align: middle; text-align: left;'";
-				document.getElementById('loadingMessage').innerHTML =
-					"<div" + cssDivLeft + ">Scan CarAd ClientTracker Image:</div>" +
-					"<div" + cssDivRight + "><img src='assets/car.png'></img></div>";
-
-				// Remove Scan target message after 10 sec.
-				setTimeout(function() {
-					var e = document.getElementById('loadingMessage');
-					e.parentElement.removeChild(e);
-				}, 10000);
 			}
-			console.log("tracker1 = " + World.trackable[1].isVisible());
-			if (World.trackable[1].isVisible()){
-				World.loaded = true;
-				World.elemId = 1;
-				console.log("chair loaded ");
-
-				console.log("World.trackableVisible = " + World.trackableVisible);
-				console.log("World.appearingAnimation[World.elemId].isRunning() = " + World.appearingAnimation[World.elemId].isRunning());
-				if ( World.trackableVisible && !World.appearingAnimation[World.elemId].isRunning() ) {
-					console.log("chair animation start ");
-					World.appearingAnimation[World.elemId].start();
-				}
-
-				var cssDivLeft = " style='display: table-cell;vertical-align: middle; text-align: right; width: 50%; padding-right: 15px;'";
-				var cssDivRight = " style='display: table-cell;vertical-align: middle; text-align: left;'";
-				document.getElementById('loadingMessage').innerHTML =
-					"<div" + cssDivLeft + ">Scan CarAd ClientTracker Image:</div>" +
-					"<div" + cssDivRight + "><img src='assets/car.png'></img></div>";
-
-				// Remove Scan target message after 10 sec.
-				setTimeout(function() {
-					var e = document.getElementById('loadingMessage');
-					e.parentElement.removeChild(e);
-				}, 10000);
-			}
-			console.log("tracker2 = " + World.trackable[2].isVisible());
-			if (World.trackable[2].isVisible()){
-            				World.loaded = true;
-            				World.elemId = 2;
-            				console.log("chair loaded ");
-
-            				console.log("World.trackableVisible = " + World.trackableVisible);
-            				console.log("World.appearingAnimation for chair 2 Started [World.elemId].isRunning() = " + World.appearingAnimation[World.elemId].isRunning());
-            				if ( World.trackableVisible && !World.appearingAnimation[World.elemId].isRunning() ) {
-            					console.log("chair 2 animation start ");
-            					World.appearingAnimation[World.elemId].start();
-            				}
-
-            				var cssDivLeft = " style='display: table-cell;vertical-align: middle; text-align: right; width: 50%; padding-right: 15px;'";
-            				var cssDivRight = " style='display: table-cell;vertical-align: middle; text-align: left;'";
-            				document.getElementById('loadingMessage').innerHTML =
-            					"<div" + cssDivLeft + ">Scan CarAd ClientTracker Image:</div>" +
-            					"<div" + cssDivRight + "><img src='assets/car.png'></img></div>";
-
-            				// Remove Scan target message after 10 sec.
-            				setTimeout(function() {
-            					var e = document.getElementById('loadingMessage');
-            					e.parentElement.removeChild(e);
-            				}, 10000);
-            			}
 		}
+
 	},
 
 	createAppearingAnimation: function createAppearingAnimationFn(model, scale) {
@@ -483,25 +372,21 @@ var World = {
 			elem = 0;
 		}
 		else if (World.trackable[1].isVisible()){
-				elem = 1;
-			}
+			elem = 1;
+		}
 		else if (World.trackable[2].isVisible()){
-            				elem = 2;
-            			}
+           	elem = 2;
+        }
 
 
 		World.trackable[elem].snapToScreen.enabled = World.snapped;
 
 		if (World.snapped) {
-
 			World.applyLayout(World.layout.snapped);
-
 			World.addInteractionEventListener();
 
 		} else {
-
 			World.applyLayout(World.layout.normal);
-
 			World.removeInteractionEventListener();
 			World.addInteractionEventListener();
 		}
@@ -523,11 +408,11 @@ var World = {
 			elem = 0;
 		}
 		else if (World.trackable[1].isVisible()){
-				elem = 1;
-			}
+			elem = 1;
+		}
 		else if (World.trackable[2].isVisible()){
-        				elem = 2;
-        			}
+        	elem = 2;
+        }
 
 		World.modelCar[elem].scale = {
 			x: layout.carScale,
