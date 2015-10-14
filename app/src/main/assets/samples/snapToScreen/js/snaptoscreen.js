@@ -254,7 +254,7 @@ var World = {
         var e = document.getElementById('loadingMessage');
         	e.parentElement.removeChild(e);
         },10000);
-        
+
 		//var htmlImages = ["assets/qr_buggy.png", "assets/qr_conferencechair", "assets/conferencechairdemo.jpg"];
 		if (!World.loaded && World.tracker.isLoaded() ) {
 			//console.log("World.modelCar[0].isLoaded() = " + World.modelCar[0].isLoaded() + " World.modelCar[1].isLoaded() = " + World.modelCar[1].isLoaded());
