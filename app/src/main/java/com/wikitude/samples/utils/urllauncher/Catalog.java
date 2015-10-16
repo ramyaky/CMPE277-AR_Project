@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.jpardogo.listbuddies.lib.views.ListBuddiesLayout;
 import com.wikitude.samples.ProductDetails;
@@ -34,7 +35,7 @@ public class Catalog extends Activity {
 
                 String s = (String)adapterView.getItemAtPosition(i);
 
-                //Toast.makeText(Catalog.this, s, Toast.LENGTH_SHORT).show();
+                Toast.makeText(Catalog.this, s, Toast.LENGTH_SHORT).show();
                 Intent item = new Intent(Catalog.this, ProductDetails.class);
                 item.putExtra("imageUrl",s);
                 startActivity(item);

@@ -4,15 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
+import android.webkit.WebView;
 
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
 import com.wikitude.sdksamples.R;
 
 public class ProductDetails extends Activity {
 
-    ImageView imageView ;
+    WebView imageView ;
 
 
     @Override
@@ -22,18 +20,10 @@ public class ProductDetails extends Activity {
         Bundle extras = getIntent().getExtras();
         String url = extras.getString("imageUrl");
         System.out.print(url);
-        imageView = (ImageView)findViewById(R.id.imageView);
-       // imageView.loadUrl(url);
-        Picasso.with(this).load(url).into((ImageView) findViewById(R.id.imageView), new Callback() {
-            @Override
-            public void onSuccess() {
-               // moveBackground();
-            }
+        imageView = (WebView)findViewById(R.id.imageView);
+        imageView.loadUrl(url);
 
-            @Override
-            public void onError() {
-            }
-        });
+
     }
 
     @Override
