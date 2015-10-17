@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import com.wikitude.sdksamples.R;
@@ -19,9 +20,12 @@ public class ProductDetails extends Activity {
         setContentView(R.layout.activity_product_details);
         Bundle extras = getIntent().getExtras();
         String url = extras.getString("imageUrl");
-        System.out.print(url);
+        //System.out.print(url);
         imageView = (WebView)findViewById(R.id.imageView);
         imageView.loadUrl(url);
+        //imageView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        imageView.getSettings().setLoadWithOverviewMode(true);
+        imageView.getSettings().setUseWideViewPort(true);
 
 
     }

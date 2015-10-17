@@ -39,7 +39,7 @@ public class SampleCamActivity extends AbstractArchitectCamActivity {
 		return (getIntent().getExtras() != null && getIntent().getExtras().get(
 				MainActivity.EXTRAS_KEY_ACTIVITY_TITLE_STRING) != null) ? getIntent()
 				.getExtras().getString(MainActivity.EXTRAS_KEY_ACTIVITY_TITLE_STRING)
-				: "Test-World";
+				: "ARIOD";
 	}
 
 	@Override

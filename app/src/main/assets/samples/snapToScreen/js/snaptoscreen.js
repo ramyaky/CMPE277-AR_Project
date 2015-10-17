@@ -254,7 +254,7 @@ var World = {
         setTimeout(function() {
         var e = document.getElementById('loadingMessage');
         	e.parentElement.removeChild(e);
-        },10000);
+        },3000);
 
 		//var htmlImages = ["assets/qr_buggy.png", "assets/qr_conferencechair", "assets/conferencechairdemo.jpg"];
 		if (!World.loaded && World.tracker.isLoaded() ) {

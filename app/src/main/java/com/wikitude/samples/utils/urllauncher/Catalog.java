@@ -33,7 +33,7 @@ public class Catalog extends Activity {
             @Override
             public void onBuddyItemClicked(AdapterView<?> adapterView, View view, int i, int i1, long l) {
 
-                String s = (String)adapterView.getItemAtPosition(i);
+                String s = (String)adapterView.getItemAtPosition(i1);
 
                 Toast.makeText(Catalog.this, s, Toast.LENGTH_SHORT).show();
                 Intent item = new Intent(Catalog.this, ProductDetails.class);
